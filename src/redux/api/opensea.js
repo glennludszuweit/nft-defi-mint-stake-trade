@@ -1,0 +1,103 @@
+import axios from "axios";
+
+const OS_API_KEY = process.env.REACT_APP_OS_API_KEY;
+const options = { method: "GET", headers: { "X-API-KEY": OS_API_KEY } };
+const orderOptions = {
+  method: "GET",
+  headers: { Accept: "application/json", "X-API-KEY": OS_API_KEY },
+};
+
+const api = {
+  getAsset: (tokenAddress, id) => {
+    return axios.get(`${API_BASE_URI}/asset/${tokenAddress}/${id}`, options);
+  },
+  getAssetEvents: (tokenAddress, tokenId) => {
+    return axios.get(
+      `${API_BASE_URI}/events?asset_contract_address=${tokenAddress}&token_id=${tokenId}`,
+      options
+    );
+  },
+  getAssets: (tokenAddress, offset, limit) => {
+    return axios.get(
+      `${API_BASE_URI}/assets?asset_contract_address=${tokenAddress}&offset=${offset}&limit=${limit}&order_by=sale_date`,
+      options
+    );
+  },
+  getCollectionEvents: (tokenAddress) => {
+    return axios.get(
+      `${API_BASE_URI}/events?asset_contract_address=${tokenAddress}&event_type=created&only_opensea=true&offset=0&limit=30`,
+      options
+    );
+  },
+  getFeaturedCollection: (collection) => {
+    return axios.get(`${API_BASE_URI}/asset_contract/${collection}`, options);
+  },
+  getCollectionStats: (slug) => {
+    return axios.get(`${API_BASE_URI}/collection/${slug}`, options);
+  },
+  getAssetsOrders: (tokenAddress, tokenId) => {
+    return axios.get(
+      `${ORDERS_API_URI}/orders?asset_contract_address=${tokenAddress}&token_id=${tokenId}&bundled=false&include_bundled=false&limit=5&offset=0&order_by=created_date&order_direction=asc`,
+      orderOptions
+    );
+  },
+  getSnipedAssets: (tokenAddress, ids) => {
+    return axios.get(
+      `${ORDERS_API_URI}/orders?asset_contract_address=${tokenAddress}&${ids}&bundled=false&include_bundled=false&side=1&limit=50&offset=0&order_by=created_date`,
+      orderOptions
+    );
+  },
+  getUserData: (account, offset, limit) => {
+    return axios.get(
+      `${API_BASE_URI}/collections?asset_owner=${account}&offset=${offset}&limit=${limit}`,
+      options
+    );
+  },
+  getUserDetails: (account) => {
+    return axios.get(`${API_BASE_URI}/account/${account}`, options);
+  },
+  getUserAssets: (account, offset, limit) => {
+    return axios.get(
+      `${API_BASE_URI}/assets?owner=${account}&offset=${offset}&limit=${limit}`,
+      options
+    );
+  },
+  getUserEvents: (account, limit = 50, offset = 0) => {
+    const date = new Date();
+    const occured30DaysDate = date.setDate(date.getDate() - 90);
+    return axios.get(
+      `${API_BASE_URI}/events?account_address=${account}&only_opensea=true&offset=${offset}&limit=${limit}&occurred_after=${occured30DaysDate}&event_type=successful`,
+      options
+    );
+  },
+  getUserSellOrders: (
+    account,
+    offset,
+    limit,
+    orderBy = "created_date",
+    sortBy = "desc",
+    bundled = false,
+    inBundled = false
+  ) => {
+    return axios.get(
+      `${ORDERS_API_URI}/orders?owner=${account}&taker=${account}&side=1&bundled=${bundled}&include_bundled=${inBundled}&limit=${limit}&offset=${offset}&order_by=${orderBy}&order_direction=${sortBy}`,
+      orderOptions
+    );
+  },
+  getUserHasOffers: (
+    account,
+    offset,
+    limit,
+    orderBy = "created_date",
+    sortBy = "desc",
+    bundled = false,
+    inBundled = false
+  ) => {
+    return axios.get(
+      `${ORDERS_API_URI}/orders?owner=${account}&taker=${account}&side=0&bundled=${bundled}&include_bundled=${inBundled}&limit=${limit}&offset=${offset}&order_by=${orderBy}&order_direction=${sortBy}`,
+      orderOptions
+    );
+  },
+};
+
+export default api;

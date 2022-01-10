@@ -1,7 +1,8 @@
+import { AccountBalanceWallet } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { useStyles } from "./styles";
 
-const Connect = ({ address, setAddress }) => {
+const Connect = ({ setAddress, wallet, balance }) => {
   const classes = useStyles();
 
   const handleConnect = async () => {
@@ -15,14 +16,23 @@ const Connect = ({ address, setAddress }) => {
     }
   };
 
-  return (
+  return !wallet ? (
     <Button
       onClick={handleConnect}
       className={classes.connect}
       variant='contained'
       color='secondary'
     >
-      {!address ? "Connect" : address}
+      Connect
+    </Button>
+  ) : (
+    <Button
+      onClick={() => {}}
+      className={classes.connected}
+      variant='contained'
+      color='secondary'
+    >
+      <AccountBalanceWallet sx={{ mr: 1 }} /> {balance}
     </Button>
   );
 };

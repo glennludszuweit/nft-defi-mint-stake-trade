@@ -13,6 +13,7 @@ export const useStyles = makeStyles({
     margin: "0 auto 2rem !important",
   },
   main: {
+    margin: "2em auto",
     padding: "0 1rem",
     boxShadow: "none !important",
   },
