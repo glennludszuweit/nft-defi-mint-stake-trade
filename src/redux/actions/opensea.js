@@ -1,5 +1,5 @@
 import { OrderSide } from "opensea-js/lib/types";
-import { formatEth } from "../../utils";
+import { formatTokenAmount } from "../../utils";
 import api from "../api/opensea";
 
 const openseaActions = {
@@ -33,7 +33,7 @@ const openseaActions = {
           (event) =>
             event?.auction_type === "dutch" &&
             event?.payment_token?.symbol === "ETH" &&
-            formatEth(event?.starting_price) <= floor &&
+            formatTokenAmount(event?.starting_price) <= floor &&
             event?.asset?.owner?.address === event?.seller?.address
         )
       );

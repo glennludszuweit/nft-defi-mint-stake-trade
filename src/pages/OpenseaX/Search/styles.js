@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles({
   root: {
-    maxWidth: "75em",
+    width: "100%",
     margin: "2em auto",
   },
   textField: {

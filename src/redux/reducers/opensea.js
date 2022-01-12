@@ -45,7 +45,7 @@ const openseaReducers = (state = initialState.opensea, action) => {
         ...state,
         collections: {
           ...state.collections,
-          searched: initialState.collections.searched,
+          searched: initialState.opensea.collections.searched,
         },
       };
 

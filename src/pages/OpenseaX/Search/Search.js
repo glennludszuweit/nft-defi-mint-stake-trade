@@ -25,10 +25,32 @@ const Search = ({ searchResults, handleCollectionSearch }) => {
     }
   };
 
+  const menuItems = [
+    { url: "/opensea-x/assets", label: "Portfolio" },
+    { url: "/opensea-x/snipe", label: "Snipe" },
+    { url: "/opensea-x/buy", label: "Buy" },
+    { url: "/opensea-x/sell", label: "Sell" },
+    { url: "/opensea-x/auction", label: "Auction" },
+    { url: "/opensea-x/offer", label: "Bid" },
+  ];
+
   return (
     <Box className={classes.root}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={8}>
+      <Grid container spacing={1}>
+        <Grid item xs={12} md={8} lg={6}>
+          {menuItems.map((item) => (
+            <Link to={item.url} key={item.url}>
+              <Button
+                variant='outlined'
+                color='secondary'
+                sx={{ p: 0.9, borderRadius: "0 !important", ml: 1 }}
+              >
+                {item.label}
+              </Button>
+            </Link>
+          ))}
+        </Grid>
+        <Grid item xs={12} md={4} lg={6} align='right'>
           <Autocomplete
             disablePortal
             filterSelectedOptions
@@ -71,26 +93,6 @@ const Search = ({ searchResults, handleCollectionSearch }) => {
               />
             )}
           />
-        </Grid>
-        <Grid item xs={12} md={4} align='right'>
-          <Link to='/opensea-x/assets'>
-            <Button
-              variant='outlined'
-              color='secondary'
-              sx={{ p: 1, borderRadius: "0 !important", mr: 2 }}
-            >
-              Assets
-            </Button>
-          </Link>
-          <Link to='/opensea-x/trade'>
-            <Button
-              variant='outlined'
-              color='secondary'
-              sx={{ p: 1, borderRadius: "0 !important" }}
-            >
-              Trade
-            </Button>
-          </Link>
         </Grid>
       </Grid>
     </Box>

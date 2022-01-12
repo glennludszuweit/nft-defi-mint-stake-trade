@@ -1,6 +1,6 @@
-import { INITIAL_STATE } from "../../constants";
+import { initialState } from "../../initialState";
 
-const projectReducers = (state = INITIAL_STATE.project, action) => {
+const projectReducers = (state = initialState.project, action) => {
   switch (action.type) {
     // WALLET ADDRESS
     case "SET_PROJECT_TOKEN":

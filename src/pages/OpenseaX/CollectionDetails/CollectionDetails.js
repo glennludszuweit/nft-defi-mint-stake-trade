@@ -122,7 +122,7 @@ const CollectionDetails = ({
     >
       <TabContext value={tab}>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <TabList onChange={handleTabChange} aria-label='lab API tabs example'>
+          <TabList onChange={handleTabChange}>
             <Tab
               key='0'
               label={tabValue[0].label}

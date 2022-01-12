@@ -8,7 +8,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar, Line } from "react-chartjs-2";
-import faker from "faker";
 
 ChartJS.register(
   CategoryScale,
@@ -52,12 +51,12 @@ const data = {
   datasets: [
     {
       label: "Sell",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+      data: labels.map((label, index) => index + 1),
       backgroundColor: "#f4a261",
     },
     {
       label: "Buy",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+      data: labels.map((label, index) => index + 1),
       backgroundColor: "#5F7A61",
     },
   ],

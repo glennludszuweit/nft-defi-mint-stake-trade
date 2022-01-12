@@ -70,22 +70,24 @@ const Main = () => {
       {toggleMenu && <MobileMenu setToggleMenu={setToggleMenu} />}
       <Box component='main' className={classes.wrapper}>
         <Toolbar />
-        <Container className={classes.container}>
-          <Paper className={classes.main}>
-            <Routes>
-              <Route exact path='/' element={<Assets assets={assets} />} />
-              <Route path='/auth' element={<Auth />} />
-              <Route path='/error' element={<Error />} />
-              <Route path='/game' element={<Game />} />
-              <Route path='/stake' element={<Stake />} />
-              <Route path='/mint' element={<Mint />} />
-              <Route
-                path='/opensea-x'
-                element={<OpenseaX seaport={seaport} />}
+        <Routes>
+          <Route exact path='/' element={<Assets assets={assets} />} />
+          <Route path='auth' element={<Auth />} />
+          <Route path='error' element={<Error />} />
+          <Route path='game' element={<Game />} />
+          <Route path='stake' element={<Stake />} />
+          <Route path='mint' element={<Mint />} />
+          <Route
+            path='opensea-x/*'
+            element={
+              <OpenseaX
+                seaport={seaport}
+                web3Address={wallet}
+                account={address}
               />
-            </Routes>
-          </Paper>
-        </Container>
+            }
+          />
+        </Routes>
       </Box>
     </Box>
   );

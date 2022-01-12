@@ -1,6 +1,6 @@
-import { INITIAL_STATE } from "../../constants";
+import { initialState } from "../../initialState";
 
-const userReducers = (state = INITIAL_STATE.user, action) => {
+const userReducers = (state = initialState.user, action) => {
   switch (action.type) {
     case "SET_WALLET_ADDRESS":
       return {

@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const API_BASE_URI = "https://api.opensea.io/api/v1";
+const ORDERS_API_URI = "https://api.opensea.io/wyvern/v1";
 const OS_API_KEY = process.env.REACT_APP_OS_API_KEY;
 const options = { method: "GET", headers: { "X-API-KEY": OS_API_KEY } };
 const orderOptions = {

@@ -266,7 +266,7 @@ const OpenseaX = ({ seaport, web3Address, account }) => {
         />
         <Route path='assets' element={<Assets {...commonStateProps} />} />
         <Route path='watchlist' element={<Assets {...commonStateProps} />} />
-        <Route path='offers' element={<Offers {...commonStateProps} />} />
+        <Route path='offer' element={<Offers {...commonStateProps} />} />
         <Route path='auction' element={<Auction {...commonStateProps} />} />
         <Route path='buy' element={<Buy {...commonStateProps} />} />
         <Route path='sell' element={<Sell {...commonStateProps} />} />
